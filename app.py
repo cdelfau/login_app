@@ -1,23 +1,58 @@
+'''Chloe Delfau
+SoftDev1 pd 8
+HW 04 -- Into a Zone of Danger
+2016-09-29'''  
+
 from flask import Flask, render_template, request
 app = Flask(__name__)
 
-@app.route("/") 
+@app.route("/")
 
-def authenticatedisp_loginpage():
-    print "\n\n\n"
-    print "***DIAG*** this Flask obj"
+def home():
+    print '\n\n***DIAG***this Flask obj'
     print app
-    #print "***DIAG*** this request obj"
-    #print request
-    #print "***DIAG*** request headers"
-    #print request.headers
-    #print "***DIAG*** request method"
-    #print request.method
-    #print "***DIAG*** request args['username']"
-    #print request.args['username']
-    #print "***DIAG*** request form"
-    #print request form
-    return render_template("login.html")
+
+    print "\n\n***DIAG***this request obj"
+    print request
+
+    print "\n***DIAG***request.headers"
+    print request.headers
+
+    print "\n***DIAG***request.method"
+    print request.method
+
+    print "\n***DIAG***request.args"
+    print request.args
+
+    print "\n***DIAG***request.form"
+    print request.form
+
+    return render_template("login.html", title="Home")
+    
+@app.route("/auth", methods = ['POST']) 
+
+def authenticate():
+#    print "\n\n***DIAG***this Flask obj"
+#    print app
+    
+#    print "\n***DIAG***this request obj"
+#    print request
+
+#    print "\n***DIAG***request.headers"
+#    print request.headers
+
+#    print "\n***DIAG***request.method"
+#    print request.method
+
+#    print "\n***DIAG***request.args"
+#    print request.args
+
+#    print "\n***DIAG***request.form['username']"
+#    print #request.form['username']
+    
+    if request.form['username'] == "Asterix" and request.form['password'] == "password":
+        return render_template("auth.html", status = "Success")
+    return render_template("auth.html", status = "Failure")
 
 if __name__ == "__main__":
     app.debug = True
