@@ -4,7 +4,7 @@ HW 04 -- Into a Zone of Danger
 2016-10-04''' 
 
 #all of the necessary imports
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request
 import hashlib
 import csv
 
@@ -68,10 +68,6 @@ def writeFile(u,p):
     with open('data.csv','w') as csvfile:
         dataWriter = csv.writer(csvfile)
         dataWriter.writerow([u,p])
-
-@app.route("/jacobo")
-def js():
-    return redirect('http://xkcd.com')
 
 #debug
 if __name__ == "__main__":
